@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Customer Information</title>
 </head>
 <body>
-
+		<H1>Customer Information</H1>
+		<h2>${message}</h2>
 </body>
 </html>

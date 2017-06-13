@@ -17,7 +17,7 @@ import CApp.CustomerApp;
 @WebServlet("/CheckName")
 public class ProcessName extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+       private String result = "";
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -26,15 +26,28 @@ public class ProcessName extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		String nextURL = "/output.jsp";
+		String message = result;
+		
+		request.setAttribute("message", message);
+		
+		getServletContext().getRequestDispatcher(nextURL).forward(request,response);
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		CustomerApp.getCustomer(request.getParameter("firstName"),request.getParameter("lastName"));
+		result = CustomerApp.getCustomer(request.getParameter("firstName"),request.getParameter("lastName"));
 		//CustomerApp.getCustomer("Adele", "Dean");
-		
+		doGet(request, response);
 	}
 
 }
